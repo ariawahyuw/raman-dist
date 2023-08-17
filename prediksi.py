@@ -19,8 +19,6 @@ model = load_model(os.path.join(os.path.dirname(__file__), 'model_ml.keras'))
 pred = model.predict(np.expand_dims(df.values, axis=0))
 
 if pred <= 0.5:
-    print("Halal", end=" ") 
+    print("Halal dengan probabilitas", round((1-pred[0][0])*100, 2), '%') 
 else:
-    print("Haram", end=" ")
-
-print("dengan probabilitas", round(pred[0][0]*100, 2), '%')
+    print("Halal dengan probabilitas", round(pred[0][0]*100, 2), '%') 
